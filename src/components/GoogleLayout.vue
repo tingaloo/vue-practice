@@ -16,15 +16,7 @@
         <img class="object-contain w-1/4" src="../assets/googleLogo.png" />
       </div>
       <div class="flex justify-center">
-        <div class="flex justify-center border rounded-sm border-gray-200 py-2 w-3/5 px-2">
-          <div class>
-            <img class="inline-block align-middle h-4" src="../assets/searchIcon.png" />
-          </div>
-          <input class="flex-grow mx-2" v-model="message" placeholder="edit me" />
-          <div class>
-            <img class="inline-block align-middle h-4" src="../assets/mic.png" />
-          </div>
-        </div>
+        <Searchbar />
       </div>
       <div class="flex justify-center pt-8">
         <div
@@ -52,7 +44,12 @@
 
 <script>
 export default {
+      components: {
+    Searchbar
+  },
   name: "GoogleLayout",
   props: {}
 };
+
+import Searchbar from './Searchbar.vue';
 </script>
