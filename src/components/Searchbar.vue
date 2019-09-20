@@ -22,20 +22,19 @@ import Vue from 'vue';
     </div>
     <div class>
       <img
-        @mouseover="hover = true"
-        @mouseleave="hover = false"
+        @mouseover="searchHover = true"
+        @mouseleave="searchHover = false"
         class="inline-block align-middle h-4"
         src="../assets/mic.png"
       />
       <div
-        :class="[hover ? 'absolute' : 'hidden']"
+        :class="[searchHover ? 'absolute' : 'hidden']"
         class="text-sm bg-black text-white px-2 py-1"
       >Search by Voice</div>
     </div>
   </div>
 </template>
 
-// v-bind:class="[isActive ? activeClass : '', errorClass]"
 
 <script>
 module.exports = {
@@ -43,13 +42,24 @@ module.exports = {
     return {
       greeting: "Hello",
       expandSearchBar: false,
-      hover: false,
+      searchHover: false,
       searchResults: [
       { name: 'Vue got moves' },
       { name: 'Vue is pretty snappy' },
       { name: 'Vue is awesome!' }
-    ]
+    ],
+    luckyOptions: [
+      {name: "I'm feeling Doodly"},
+      {name: "I'm feeling Playful"},
+      {name: "I'm feeling Artistic"},
+      {name: "I'm feeling Hungry"},
+      {name: "I'm feeling Trendy"},
+      {name: "I'm feeling Puzzled"},
+      {name: "I'm feeling Stellar"}
+    ],
+    luckyHover: false
     };
   }
+  
 };
 </script>

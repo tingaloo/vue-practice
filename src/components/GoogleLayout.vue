@@ -23,8 +23,10 @@
           class="px-2 mx-2 py-2 bg-gray-100 cursor-pointer border border-white hover:border-gray-500"
         >Google Search</div>
         <div
+          @mouseover="trigger"
           class="px-2 mx-2 py-2 bg-gray-100 cursor-pointer border border-white hover:border-gray-500"
         >I'm Feeling Lucky</div>
+        <div id="example-1" v-if="luckyHover">dfdf</div>
       </div>
     </div>
     <div class="flex justify-between bg-gray-100 py-4 px-4">
@@ -44,12 +46,33 @@
 
 <script>
 export default {
-      components: {
+  components: {
     Searchbar
   },
   name: "GoogleLayout",
-  props: {}
+  props: {},
+  data: function() {
+    return {
+      luckyOptions: [
+        { name: "I'm feeling Doodly" },
+        { name: "I'm feeling Playful" },
+        { name: "I'm feeling Artistic" },
+        { name: "I'm feeling Hungry" },
+        { name: "I'm feeling Trendy" },
+        { name: "I'm feeling Puzzled" },
+        { name: "I'm feeling Stellar" }
+      ],
+      luckyHover: false
+    };
+  },
+  methods: {
+    trigger() {
+      setTimeout(() => {
+        this.luckyHover = true;
+      }, 1000);
+    }
+  }
 };
 
-import Searchbar from './Searchbar.vue';
+import Searchbar from "./Searchbar.vue";
 </script>
