@@ -2,14 +2,31 @@
 <template>
   <div class="flex self-center justify-center h-screen flex-col justify-between">
     <div class="flex justify-between pt-4 px-2">
-      <div>
-        <a class="px-2 tracking-tight">About</a>
-        <a class="px-2 tracking-tight">Store</a>
+      <div class="flex">
+        <a class="flex px-2 tracking-tight">About</a>
+        <a class="flex px-2 tracking-tight">Store</a>
       </div>
-      <div>
+      <div class="flex">
         <a class="px-2">Gmail</a>
         <a class="px-2">Images</a>
         <a class="px-2">Icon</a>
+        <a class="flex mb-4 flex-col w-4 mx-2">
+          <div class="flex w-full mb-1 justify-between">
+            <div class="bg-gray-500 h-1 w-1"></div>
+            <div class="bg-gray-500 h-1 w-1"></div>
+            <div class="bg-gray-500 h-1 w-1"></div>
+          </div>
+          <div class="flex w-full my-1 justify-between">
+            <div class="bg-gray-500 h-1 w-1"></div>
+            <div class="bg-gray-500 h-1 w-1"></div>
+            <div class="bg-gray-500 h-1 w-1"></div>
+          </div>
+          <div class="flex w-full my-1 justify-between">
+            <div class="bg-gray-500 h-1 w-1"></div>
+            <div class="bg-gray-500 h-1 w-1"></div>
+            <div class="bg-gray-500 h-1 w-1"></div>
+          </div>
+        </a>
       </div>
     </div>
     <div class="flex flex-col">
@@ -44,17 +61,23 @@
     </div>
   </div>
 </template>
-
+<style scoped>
+.underline {
+  text-decoration: underline;
+  background-color: red;
+}
+</style>
+</style>
 <script>
-      const luckyOptions= [
-        { name: "I'm feeling Doodly" },
-        { name: "I'm feeling Playful" },
-        { name: "I'm feeling Artistic" },
-        { name: "I'm feeling Hungry" },
-        { name: "I'm feeling Trendy" },
-        { name: "I'm feeling Puzzled" },
-        { name: "I'm feeling Stellar" }
-      ];
+const luckyOptions = [
+  { name: "I'm feeling Doodly" },
+  { name: "I'm feeling Playful" },
+  { name: "I'm feeling Artistic" },
+  { name: "I'm feeling Hungry" },
+  { name: "I'm feeling Trendy" },
+  { name: "I'm feeling Puzzled" },
+  { name: "I'm feeling Stellar" }
+];
 
 export default {
   components: {
@@ -64,31 +87,30 @@ export default {
   props: {},
   data: function() {
     return {
-        luckyText: {name: "I'm feeling Lonely"},
-        myScroll: undefined
+      luckyText: { name: "I'm feeling Lonely" },
+      myScroll: undefined
     };
   },
   directives: {
-      'scrollEvent': {
-          bind(el, binding) {
-              el.addEventListener(binding.arg, binding.value)
-          }
+    scrollEvent: {
+      bind(el, binding) {
+        el.addEventListener(binding.arg, binding.value);
       }
+    }
   },
   methods: {
     luckyScroll() {
       setTimeout(() => {
-          this.myScroll =  setInterval(() => {
-             this.luckyText = luckyOptions[Math.floor(Math.random()*luckyOptions.length)];
-          }, 50);
+        this.myScroll = setInterval(() => {
+          this.luckyText =
+            luckyOptions[Math.floor(Math.random() * luckyOptions.length)];
+        }, 50);
       }, 500);
     },
     stopLuckyScroll() {
-        setTimeout(() => {
-          clearInterval(this.myScroll),
-        this.myScroll = undefined;
+      setTimeout(() => {
+        clearInterval(this.myScroll), (this.myScroll = undefined);
       }, 500);
-        
     }
   }
 };
