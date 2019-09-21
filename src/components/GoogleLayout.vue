@@ -1,3 +1,4 @@
+
 <template>
   <div class="flex self-center justify-center h-screen flex-col justify-between">
     <div class="flex justify-between pt-4 px-2">
@@ -23,10 +24,10 @@
           class="px-2 mx-2 py-2 bg-gray-100 cursor-pointer border border-white hover:border-gray-500"
         >Google Search</div>
         <div
-          @mouseover="trigger"
+          v-scrollEvent:mouseover="luckyScroll"
+          v-scrollEvent:mouseleave="stopLuckyScroll"
           class="px-2 mx-2 py-2 bg-gray-100 cursor-pointer border border-white hover:border-gray-500"
-        >I'm Feeling Lucky</div>
-        <div id="example-1" v-if="luckyHover">dfdf</div>
+        >{{luckyText.name}}</div>
       </div>
     </div>
     <div class="flex justify-between bg-gray-100 py-4 px-4">
@@ -45,6 +46,16 @@
 </template>
 
 <script>
+      const luckyOptions= [
+        { name: "I'm feeling Doodly" },
+        { name: "I'm feeling Playful" },
+        { name: "I'm feeling Artistic" },
+        { name: "I'm feeling Hungry" },
+        { name: "I'm feeling Trendy" },
+        { name: "I'm feeling Puzzled" },
+        { name: "I'm feeling Stellar" }
+      ];
+
 export default {
   components: {
     Searchbar
@@ -53,23 +64,31 @@ export default {
   props: {},
   data: function() {
     return {
-      luckyOptions: [
-        { name: "I'm feeling Doodly" },
-        { name: "I'm feeling Playful" },
-        { name: "I'm feeling Artistic" },
-        { name: "I'm feeling Hungry" },
-        { name: "I'm feeling Trendy" },
-        { name: "I'm feeling Puzzled" },
-        { name: "I'm feeling Stellar" }
-      ],
-      luckyHover: false
+        luckyText: {name: "I'm feeling Lonely"},
+        myScroll: undefined
     };
   },
+  directives: {
+      'scrollEvent': {
+          bind(el, binding) {
+              el.addEventListener(binding.arg, binding.value)
+          }
+      }
+  },
   methods: {
-    trigger() {
+    luckyScroll() {
       setTimeout(() => {
-        this.luckyHover = true;
-      }, 1000);
+          this.myScroll =  setInterval(() => {
+             this.luckyText = luckyOptions[Math.floor(Math.random()*luckyOptions.length)];
+          }, 50);
+      }, 500);
+    },
+    stopLuckyScroll() {
+        setTimeout(() => {
+          clearInterval(this.myScroll),
+        this.myScroll = undefined;
+      }, 500);
+        
     }
   }
 };

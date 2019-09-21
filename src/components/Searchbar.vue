@@ -3,8 +3,9 @@ import Vue from 'vue';
 <template>
   <div
     v-bind:class="[expandSearchBar ? 'rounded-lg' : 'rounded-full']"
-    class="flex justify-center border border-gray-200 py-2 w-3/5 px-2"
+    class="flex justify-center border border-gray-200 py-2 w-3/5 flex-wrap"
   >
+  <div class="flex w-full px-2">
     <div class>
       <img class="inline-block align-middle h-4" src="../assets/searchIcon.png" />
     </div>
@@ -14,12 +15,8 @@ import Vue from 'vue';
         v-on:click="expandSearchBar = true"
         class="flex-grow w-full"
       />
-      <ul id="example-1" v-if="expandSearchBar">
-  <li v-for="result in searchResults" v-bind:key="result.name">
-    {{ result.name }}
-  </li>
-</ul>
     </div>
+
     <div class>
       <img
         @mouseover="searchHover = true"
@@ -31,6 +28,21 @@ import Vue from 'vue';
         :class="[searchHover ? 'absolute' : 'hidden']"
         class="text-sm bg-black text-white px-2 py-1"
       >Search by Voice</div>
+    </div>
+    </div>
+        <div class="flex w-full">
+    <ul id="example-1" v-if="expandSearchBar" class="py-2 w-full">
+      <li
+        v-for="result in searchResults"
+        v-bind:key="result.name"
+        class="flex hover:bg-gray-200 py-2 px-2 w-full"
+      >
+      <div class="flex flex-grow cursor-default">
+        {{ result.name }}
+        </div>
+        <a class="flex flex-none cursor-pointer ">Remove</a>
+        </li>
+    </ul>
     </div>
   </div>
 </template>
@@ -44,22 +56,11 @@ module.exports = {
       expandSearchBar: false,
       searchHover: false,
       searchResults: [
-      { name: 'Vue got moves' },
-      { name: 'Vue is pretty snappy' },
-      { name: 'Vue is awesome!' }
-    ],
-    luckyOptions: [
-      {name: "I'm feeling Doodly"},
-      {name: "I'm feeling Playful"},
-      {name: "I'm feeling Artistic"},
-      {name: "I'm feeling Hungry"},
-      {name: "I'm feeling Trendy"},
-      {name: "I'm feeling Puzzled"},
-      {name: "I'm feeling Stellar"}
-    ],
-    luckyHover: false
+        { name: "Vue got moves" },
+        { name: "Vue is pretty snappy" },
+        { name: "Vue is awesome!" }
+      ]
     };
   }
-  
 };
 </script>
