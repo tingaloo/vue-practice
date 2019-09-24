@@ -1,18 +1,19 @@
 <template>
   <div>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <GoogleLayout/>
+    <SubredditExplorer/>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import GoogleLayout from './components/GoogleLayout.vue'
+// import GoogleLayout from './components/GoogleLayout.vue'
+import SubredditExplorer from './components/SubredditExplorer.vue'
 
 export default {
   name: 'app',
   components: {
-    GoogleLayout
+    SubredditExplorer
   }
 }
 </script>

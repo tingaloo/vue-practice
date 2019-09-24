@@ -67,7 +67,6 @@
   background-color: red;
 }
 </style>
-</style>
 <script>
 const luckyOptions = [
   { name: "I'm feeling Doodly" },
